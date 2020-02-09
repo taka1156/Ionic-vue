@@ -8,87 +8,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <img :src="require('@/assets/ionic-vue.png')" height="180px" width="280px">
-      <h1>{{ msg }}</h1>
-      <h2>Essential Links</h2>
-      <ul>
-        <li>
-          <a
-            href="https://vuejs.org"
-            target="_blank"
-          >
-            Core Docs
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://forum.vuejs.org"
-            target="_blank"
-          >
-            Forum
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://chat.vuejs.org"
-            target="_blank"
-          >
-            Community Chat
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/vuejs"
-            target="_blank"
-          >
-            Twitter
-          </a>
-        </li>
-        <br>
-        <li>
-          <a
-            href="http://vuejs-templates.github.io/webpack/"
-            target="_blank"
-          >
-            Docs for This Template
-          </a>
-        </li>
-      </ul>
-      <h2>Ecosystem</h2>
-      <ul>
-        <li>
-          <a
-            href="http://router.vuejs.org/"
-            target="_blank"
-          >
-            vue-router
-          </a>
-        </li>
-        <li>
-          <a
-            href="http://vuex.vuejs.org/"
-            target="_blank"
-          >
-            vuex
-          </a>
-        </li>
-        <li>
-          <a
-            href="http://vue-loader.vuejs.org/"
-            target="_blank"
-          >
-            vue-loader
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/vuejs/awesome-vue"
-            target="_blank"
-          >
-            awesome-vue
-          </a>
-        </li>
-      </ul>
+      <div style="font-size:60px;">{{ timeFormat }}</div>
+      <button v-if="!isTimerState" @click="start()">start</button>
+      <button v-else @click="stop()">stop</button>
     </ion-content>
   </ion-app>
 </template>
@@ -98,7 +20,55 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Ionic + Vue App'
+      isTimerState: false,
+      timer: null,
+      hour: 1,
+      minits: 0,
+      seconds: 0
+    }
+  },
+  computed: {
+    timeFormat () {
+      let h,m,s;
+      if(this.hour < 10){
+        h = `0${this.hour}`;
+      }else {
+        h = `${this.hour}`;
+      }
+      if(this.minits < 10){
+        m = `0${this.minits}`;
+      }else {
+        m = `${this.minits}`;
+      }
+      if(this.seconds < 10){
+        s = `0${this.seconds}`;
+      }else {
+        s = `${this.seconds}`;
+      }
+      return `${h}:${m}:${s}`;
+    }
+  },
+  methods: {
+    count() {
+      if(this.seconds <= 0 && this.minits >= 0 && this.hour >= 1){
+        this.hour--;
+        this.minits = this.seconds = 59;
+      } else if(this.seconds <= 0 && this.minits >= 1){
+        this.minits--;
+        this.seconds = 59;
+      } else if(this.seconds <= 0 && this.minits <=0) {
+        // 終了後の処理
+      } else {
+        this.seconds--;
+      }
+    },
+    start() {
+      this.isTimerState = true;
+      this.timer = setInterval(() => {this.count()},1000);
+    },
+    stop() {
+      clearInterval(this.timer);
+      this.isTimerState = false;
     }
   }
 }
