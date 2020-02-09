@@ -22,3 +22,15 @@
 
 npm run dev でWeb版の画面を見て開発、
 npm run build と npx cap copyでビルド
+
+## scriptsについて
+
+```
+"build:app": "npx cap copy",
+"dev:ios": "npx cap open ios",
+"dev:android": "npx open android",
+"ios": "npx cap add ios",
+"android": "npx cap add android"
+```
+
+`はじめ方` のコマンドを `npm run ~` で省略できるようにした。
