@@ -8,7 +8,9 @@
 
 1. router/index.jsとHelloWorld.vueを書き換え
 
-1. `sudo gem install cocoapods`
+1. 〜〜`sudo gem install cocoapods`〜〜<br>
+  `brew install cocoapods`(上のやつと重複していたら、`brew link --overwrite cocoapods`で上書きしろと出てくる)<br>
+   参考:[Catalina cocoa pods インストールできない-teratail](https://teratail.com/questions/245100)
 
 1. `npx ionic init`
 
@@ -34,3 +36,6 @@ npm run build と npx cap copyでビルド
 ```
 
 `はじめ方` のコマンドを `npm run ~` で省略できるようにした。
+
+## 注意
+yarn は使ってはいけないらしい。

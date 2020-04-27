@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { IonicVueRouter } from '@ionic/vue'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(IonicVueRouter)
  
@@ -11,7 +10,7 @@ export default new IonicVueRouter({
     {
       path: '/',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: () => import('@/components/HelloWorld')
     }
   ]
 })

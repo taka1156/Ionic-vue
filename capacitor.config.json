@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "todo-app",
+  "appName": "ionic-vue-sample-app",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",
